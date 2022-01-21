@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+      "outDir": "dist",
+      "lib": ["dom", "dom.iterable", "es2015.promise", "esnext"],
+      "module": "commonjs",
+      "allowJs": true,
+      "checkJs": true,
+      "target": "es5",
+      "declaration": true,
+      "moduleResolution": "node", 
+      "allowSyntheticDefaultImports": true
+  },
+  "include": [ "index.js", "dist" ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "colin-util",
+  "version": "1.0.1",
+  "description": "",
+  "main": "./main.js",
+  "module": "dist/index.js",
+  "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guiyu1230/colin-util"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && webpack ./dist/index.js -o ./ --mode production",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "dist",
+    "main.js",
+    "index.d.ts"
+  ]
+}

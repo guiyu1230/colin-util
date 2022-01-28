@@ -18,3 +18,10 @@
   * @returns {obj}
   */
  export declare const deepClone: (obj: object) => {};
+/**
+ * 清除图片周围空白区域
+ * @param {string} url - 图片地址或base64
+ * @param {number} [padding=0] - 内边距
+ * @return {Promise<string>} base64 - 裁剪后的图片字符串
+ */
+ export declare const CropImgEdge: (url: string, padding?: number) => Promise<unknown>;

@@ -1,11 +1,13 @@
 import {
     debounce,
     throttle,
-    deepClone
+    deepClone,
+    CropImgEdge
 } from './package/util';
 
 export {
     debounce,
     throttle,
-    deepClone
+    deepClone,
+    CropImgEdge
 }

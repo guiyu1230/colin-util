@@ -2,12 +2,14 @@ import {
     debounce,
     throttle,
     deepClone,
-    CropImgEdge
+    CropImgEdge,
+    recursionTree
 } from './package/util';
 
 export {
     debounce,
     throttle,
     deepClone,
-    CropImgEdge
+    CropImgEdge,
+    recursionTree
 }

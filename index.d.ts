@@ -18,10 +18,27 @@
   * @returns {obj}
   */
  export declare const deepClone: (obj: object) => {};
-/**
- * 清除图片周围空白区域
- * @param {string} url - 图片地址或base64
- * @param {number} [padding=0] - 内边距
- * @return {Promise<string>} base64 - 裁剪后的图片字符串
- */
+ /**
+  * 清除图片周围空白区域
+  * @param {string} url - 图片地址或base64
+  * @param {number} [padding=0] - 内边距
+  * @return {Promise<string>} base64 - 裁剪后的图片字符串
+  */
  export declare const CropImgEdge: (url: string, padding?: number) => Promise<unknown>;
+ /**
+  * 遍历树状列表. 获取树状节点的具体信息
+  * @param list 树结构列表
+  * @param other 数据信息
+  *     pId  父id
+  *     step 当前层级
+  *     allId  每个节点的具体信息
+  *     allChildObj  每个节点以及对应所有的后代节点id集合
+  *     pIdList  当前节点的包括父id及其以上的祖先id集合
+  */
+ export declare function recursionTree(list: any[], other: {
+     pId?: string | null;
+     step: number;
+     allId: object;
+     pIdList: any[];
+ }): void;
+ 

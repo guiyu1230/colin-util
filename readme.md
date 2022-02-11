@@ -32,4 +32,54 @@ console.log(liLeiStr === liLeiCopy) // false
 const liLeiCopy1 = deepClone(liLei);
 console.log(liLeiStr === liLeiCopy1) // false
 
+// recursionTree 分析树结构用法
+const tree = [
+    {
+        id: 0,
+        title: '节点0',
+        children: [
+            { 
+                id: 1, 
+                title: '节点1',
+                children: [
+                    {
+                        id: 3,
+                        title: '节点3'
+                    },
+                    {
+                        id: 4,
+                        title: '节点4'
+                    }
+                ]
+            },
+            { 
+                id: 2, 
+                title: '节点2'
+            }
+        ]
+    }
+]
+
+const allId = {};   // allId会拿到节点及其所有上下关系的详细信息
+recursionTree(tree, { step: 1, allId, pIdList: [] })
+console.log(allId)
+/**
+ * {
+ *  0: {
+ *     childList: (4) [1, 3, 4, 2]
+ *     item: {id: 0, title: '节点0', children: Array(2)}
+ *     pId: undefined
+ *     pIdList: []
+ *     step: 1
+ *  },
+ *  1: {
+ *     childList: (2) [3, 4]
+ *     item: {id: 1, title: '节点1', children: Array(2)}
+ *     pId: 0
+ *     pIdList: [0]
+ *     step: 2
+ *   },
+ *   ...
+ * }
+ * /
 ```

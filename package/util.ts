@@ -151,3 +151,51 @@ export const CropImgEdge = (url: string, padding = 0) => {
         }
     })
 }
+
+/**
+ * 遍历树状列表. 获取树状节点的具体信息
+ * @param list 树结构列表
+ * @param other 数据信息
+ *     pId  父id
+ *     step 当前层级
+ *     allId  每个节点的具体信息
+ *     allChildObj  每个节点以及对应所有的后代节点id集合
+ *     pIdList  当前节点的包括父id及其以上的祖先id集合
+ */
+export function recursionTree(
+    list: any[],
+    other: {
+        pId?: string | null,
+        step: number,
+        allId: object,
+        pIdList: any[]
+    }
+) {
+    if(list && list.length > 0) {
+        list.forEach(item => {
+            const id = item.id;
+            other.allId[id] = {
+                step: other.step,
+                item,
+                pId: other.pId,
+                pIdList: [...other.pIdList],
+                childList: []
+            }
+            other.pIdList.forEach(key => {
+                if(!other.allId[key].childList) {
+                    other.allId[key].childList = [id];
+                } else {
+                    other.allId[key].childList.push(id);
+                }
+            })
+            if(item.children && item.children.length) {
+                recursionTree(item.children, {
+                    pId: id,
+                    step: other.step + 1,
+                    allId: other.allId,
+                    pIdList: [...other.pIdList, id]
+                })
+            }
+        })
+    }
+}

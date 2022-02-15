@@ -199,3 +199,29 @@ export function recursionTree(
         })
     }
 }
+
+/**
+ * 将有引用关系的列表转换为树结构
+ * @param list 引用关系的系列表
+ *  { id, pid }
+ */
+export function arrayToTree(list: any[]) {
+    const result = [];
+    const itemMap = {};
+    list.forEach(item => {
+        const id = item.id;
+        const pid = item.pid;
+        itemMap[id] = item;
+        if(itemMap[pid]) {
+            if(!itemMap[pid]['children']) {
+                itemMap[pid]['children'] = [item];
+            } else {
+                itemMap[pid]['children'].push(item);
+            }
+        }
+        if(id === 0) {
+            result.push(item);
+        }
+    })
+    return result;
+}

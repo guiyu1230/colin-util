@@ -41,4 +41,10 @@
      allId: object;
      pIdList: any[];
  }): void;
+ /**
+  * 将有引用关系的列表转换为树结构
+  * @param list 引用关系的系列表
+  *  { id, pid }
+  */
+ export declare function arrayToTree(list: any[]): any[];
  

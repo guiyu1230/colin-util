@@ -47,4 +47,15 @@
   *  { id, pid }
   */
  export declare function arrayToTree(list: any[]): any[];
+ /**
+  * 手写promise.
+  * 使用了发布订阅模式和状态模式两种
+  * 状态模式管理 变量state
+  * 发布订阅模式在then方法订阅. 在调用resolve和reject发布
+  */
+ export declare class MyPromise {
+     [x: string]: any;
+     constructor(executor: any);
+     then(onFulfilled: any, onRejected: any): void;
+ }
  

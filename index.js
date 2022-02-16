@@ -2,6 +2,7 @@ import {
     debounce,
     throttle,
     deepClone,
+    MyPromise,
     arrayToTree,
     CropImgEdge,
     recursionTree
@@ -10,6 +11,7 @@ import {
 export {
     debounce,
     throttle,
+    MyPromise,
     deepClone,
     arrayToTree,
     CropImgEdge,

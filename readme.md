@@ -115,4 +115,24 @@ console.log(newTree);
 //         ]
 //     }
 // ]
+
+// MyPromise用法
+function fn() {
+  return new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      if(Math.random() > 0.5) {
+        resolve(1)
+      } else {
+        reject(2)
+      }
+    }, 1000)
+  })
+}
+fn().then(
+  res => {
+    console.log('成功', res) // res 1
+  },
+  err => {
+    console.log('失败', err) // err 2
+  })
 ```

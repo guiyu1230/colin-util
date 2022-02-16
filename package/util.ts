@@ -225,3 +225,55 @@ export function arrayToTree(list: any[]) {
     })
     return result;
 }
+
+/**
+ * 手写promise.
+ * 使用了发布订阅模式和状态模式两种
+ * 状态模式管理 变量state
+ * 发布订阅模式在then方法订阅. 在调用resolve和reject发布
+ */
+export class MyPromise {
+    [x: string]: any;
+    constructor(executor: any) {
+        this.state = 'pending'; //初始状态为等待
+        this.value = null;      //成功的值
+        this.reason = null;     //失败的原因
+        this.onFulfilledCallbacks = []; //成功函数存放的数组
+        this.onRejectedCallbacks = []; //失败函数存放的数组
+        const resolve = (value: any) => {
+            if(this.state === 'pending') {
+                this.state = 'fulfilled'
+                this.value = value;
+                this.onFulfilledCallbacks.forEach(fn => fn()) //调用成功数组的函数
+            }
+        }
+        const reject = (reason: any) => {
+            if(this.state === 'pending') {
+                this.state = 'reject';
+                this.reason = reason;
+                this.onRejectedCallbacks.forEach(fn => fn()) //调用失败数组的函数
+            }
+        }
+        try {
+            executor(resolve, reject);
+        } catch(err) {
+            reject(err);
+        }
+    }
+    then(onFulfilled, onRejected) {
+        if(this.state === 'fulfilled') {
+            onFulfilled(this.value);
+        }
+        if(this.state === 'rejected') {
+            onRejected(this.reason);
+        }
+        if(this.state === 'pending') {
+            this.onFulfilledCallbacks.push(() => {
+                onFulfilled(this.value);
+            })
+            this.onRejectedCallbacks.push(() => {
+                onRejected(this.reason);
+            })
+        }
+    }
+}
